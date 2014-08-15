@@ -1,0 +1,10 @@
+<pre class="sg-html-code sg-preformatted">
+<code>function makePercent(cell){
+    var num = cell.innerText;
+    var arrnum = num.split(".");
+    var num = arrnum[0];
+    if( arrnum[1] !== undefined && arrnum[1].length > 0 && arrnum[1][0] >= 5 ){ num++;}
+    num = num + "%";
+    cell.innerText = num;
+}</code>
+</pre>

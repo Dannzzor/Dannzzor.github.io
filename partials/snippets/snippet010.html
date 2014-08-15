@@ -1,0 +1,31 @@
+<pre class="sg-html-code sg-preformatted">
+<code>window.SaveQueue = (function(){
+    var savedQueue = [];
+    var queue = [];
+    var start = function(){
+        queue = savedQueue.slice(0);
+        SaveQueue.goNext();
+    };
+    var add = function(fnc){
+        queue.push(fnc);
+        savedQueue.push(fnc);
+    };
+    var goNext = function(){
+        if( queue.length >= 1 ){
+            var fnc = queue.shift();
+            if( typeof fnc == "function" ){
+                fnc();
+            }
+        } else {
+            JE.Log("Save queue complete");
+            // add a redirect here
+            //fetchElementData();
+        }
+    };
+    return {
+        add:add,
+        goNext:goNext,
+        start:start
+    };
+}());</code>
+</pre>

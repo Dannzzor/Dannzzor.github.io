@@ -1,0 +1,10 @@
+<pre class="sg-html-code sg-preformatted">
+<code>function getParams(url){
+    var map = {};
+    url = url || window.location.href;
+    url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        map[key] = value;
+    });
+    return map;
+}</code>
+</pre>

@@ -1,0 +1,11 @@
+<pre class="sg-html-code sg-preformatted">
+<code>function digits(myInt){
+    if( !myInt || isNaN(myInt) ) { return 0; }
+    myInt = myInt.toString();
+    myInt = myInt.split(".");
+    var part1 = myInt[0];
+    var part2 = myInt[1] || "";
+    part1 = part1.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    return part2 ? part1 + "." + part2 : part1;
+}</code>
+</pre>
