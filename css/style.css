@@ -1,23 +1,45 @@
+﻿/*
+
+Color scheme:
+
+(main) (dark) (medium) ...
+
+Primary Color:
+55F1FF  60B7BF  1C9AA6  80F4FF  A2F7FF
+
+Secondary Color A:
+6980FF  6B78BF  2237A6  8EA0FF  ACB9FF
+
+Secondary Color B:
+71FF53  6FBF5E  33A61B  94FF7E  B1FFA0
+
+Complementary Color:
+FFA453  BF8C5E  A65C1B  FFBB7E  FFCDA0
+
+*/
+
+
 /* apply a natural box layout model to all elements */
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
  }
 
-body {
+body, h1, h2, h3, h4, h5, h6, p, a, td, th, label, ul {
   margin: 0;
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, a {
+textarea {
+  margin: 0;
+  padding: 5px;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, td, th, label {
   font-family: "Lato","Verdana",sans-serif;
   font-weight: 400;
-  margin: 0;
-  padding: 0;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
@@ -35,6 +57,14 @@ a {
 .tcell {
   display: table-cell;
   vertical-align: top;
+}
+
+th {
+  text-align: left;
+  /*border-bottom: 1px solid #ccc;*/
+  /*padding-bottom: 5px;*/
+  line-height: 1.5;
+  background: #eee;
 }
 
 .sidebar {
@@ -72,6 +102,29 @@ a {
   color: #333;
 }
 
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+.header li {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.header li a {
+  color: #999;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.2s all;
+}
+
+.header li a:hover {
+  color: #555;
+}
+
 .logo {
   background: #5ef;/*#99f;*/
   border-bottom: 1px solid #444;
@@ -96,7 +149,8 @@ a {
 }
 
 .navigation li {
-  background: #5ef;
+  border-left: 0;
+  transition: 0.3s all;
 }
 
 .navigation a {
@@ -114,9 +168,12 @@ a {
 }
 
 .navigation .active a {
-  margin-left: 5px;
   color: #5ef;
   background: #3c3c3c;
+}
+
+.navigation li.active {
+  border-left: 5px solid #5ef;
 }
 
 .navigation a:hover {
@@ -128,21 +185,23 @@ a {
 /* ie fix */
 @-ms-viewport {width: device-width;}
 
-.container {
-  margin: 30px auto;
-  max-width: 1200px;
-  width: 95%;
+.drd-container {
+  margin: 30px;
+  /*max-width: 1200px;
+  width: 95%;*/
 }
 
 .column {
   float: left;
-  margin-left: 5%;
+  /*margin-left: 5%;*/
+  margin-left: 2%;
 }
  
-.column:first-child {
+.column:nth-child(4n + 1) {
   margin-left: 0;
 }
 
+/*
 .column.full {
   width: 100%;
 }
@@ -166,6 +225,31 @@ a {
 .column.three-fourths {
   width: 73.75%;
 }
+*/
+
+.column.full {
+  width: 100%;
+}
+  
+.column.two-thirds {
+  width: 66%;
+}
+  
+.column.half {
+  width: 49%;
+}
+ 
+.column.one-third {
+  width: 32%;
+}
+ 
+.column.one-fourth {
+  width: 23.5%;
+}
+
+.column.three-fourths {
+  width: 74.5%;
+}
 
 .row:after {
   content: "";
@@ -186,7 +270,8 @@ a {
   .column.two-thirds,
   .column.half,
   .column.one-third,
-  .column.one-fourth {
+  .column.one-fourth,
+  .column.three-fourths {
     float: none;
     margin: 0;
     width: 100%;
@@ -196,9 +281,10 @@ a {
 
 
 .fillerContent {
-	height: 100px;
-	background-color: #fff;
+  height: 100px;
+  background-color: #fff;
   border-bottom: 1px solid #ddd;
+  padding: 10px;
 }
 
 
@@ -211,7 +297,8 @@ a {
 }
 
 .block-header {
-  height: 30px;
+  /*height: 30px;*/
+  overflow: hidden;
   line-height: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
@@ -228,7 +315,7 @@ a {
   border-bottom: 1px solid #ddd;
 }
 
-.task-row:hover {
+.table-hover tr:hover td {
   background: #eee;
 }
 
@@ -236,26 +323,42 @@ a {
   border-bottom: 1px solid transparent;
 }
 
-.priority {
-  width: 15%;
-  float: left;
-  line-height: 45px;
+.table {
+  width: 100%;
 }
 
-.priority a {
+.taskPriority,
+.taskName, 
+.taskID,
+.taskHours {
+  vertical-align: middle;
+}
+
+.taskPriority span{
   padding: 5px;
+  width: 70px;
+  display: block;
+  text-align: center;
 }
 
-.priority.high a {
-  background: #f88;
+.taskPriority.high span {
+  background: #FFA453; /*f88*/
 }
 
-.priority.normal a {
-  background: #8f8;
+.taskPriority.normal span {
+  background: #71FF53;/*8f8*/
 }
 
-.priority.low a {
-  background: #88f;
+.taskPriority.low span {
+  background: #6980FF;/*88f*/
+}
+
+.taskName h4 {
+  padding: 5px 0;
+}
+
+.taskName h5 {
+  padding-bottom: 5px;
 }
 
 .task-title {
@@ -349,7 +452,7 @@ a {
   padding: 5px 15px;
   position: absolute;
   z-index: 98;
-  width: 220px;
+  min-width: 100px;
 }
 
 .tooltip:hover:before{
@@ -372,12 +475,85 @@ a {
   border-bottom: 1px solid #ddd;
 }
 
-.snippetList li {
-  padding: 3px 5px;
-  font-family: calibri;
-  cursor: pointer;
+.snippetList a {
+  padding: 7px 5px;
+  font-size: 12px;
+  color: inherit;
+  width: 100%;
+  display: block;
+  word-break: break-word;
+}
+
+.snippetList li:nth-child(2n) {
+  background: #f4f4f4;
 }
 
 .snippetList li:hover {
-  background: #eee;
+  background: #333;
+  color: #fff;
 }
+
+.snippetList li.active {
+  background: #555;
+  color: #fff;
+}
+
+h3.boxHeading {
+  width: 50%;
+  float: left;
+}
+
+.taskSearch {
+  float: right;
+  width: 25%;
+  margin: 0 0 0 10px;
+}
+
+.snippetSearch {
+  float: right;
+  width: 50%;
+  margin: 0 0 0 10px;
+}
+
+.filterLabel,
+.taskFilter {
+  float: right;
+}
+
+.clientBox {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.clientBox img {
+  width: 100%;
+  border: 1px solid #555;
+}
+
+.clientBox h4 {
+  height: 18px;
+  overflow: hidden;
+}
+
+.clientBox h5 {
+  border-bottom: 1px solid #eee;
+  margin: 5px 0 10px 0;
+}
+
+.snippetSectionHeading {
+  margin: 10px 0;
+}
+
+.snippetComments{
+  padding: 10px;
+  background: #f4f4f4;
+}
+
+.snippetCodeBox {
+  width: 100%;
+}
+
+/**/

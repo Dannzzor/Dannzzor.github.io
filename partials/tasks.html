@@ -1,66 +1,66 @@
+﻿<div class="row">
+  <div class="column full">
+    <div class="block-container">
+      <div class="block-header">
+        <h3>Tasks<input class="taskSearch" type="search" ng-model="taskSearch" placeholder="Search" /></h3>
+        
+      </div>
+      <div class="block-content">
+
+        <div class="table-responsive">
+          <table cellpadding="0" cellspacing="0" class="table table-hover"><!-- table-striped  -->
+            <thead>
+            </thead>
+            <tbody>
+              <tr ng-repeat="task in taskData.tasks | filter:taskSearch | orderBy:'Priority'">
+                <td class="taskPriority {{task.Priority | decode:'priority' | lowercase}}"><span>{{task.Priority | decode:'priority'}}</span></td>
+                <td class="taskName">
+                  <h4><a ng-href="http://it.jecsi.com/Lists/ProjectTasks/DispComments.aspx?ID={{task.ID}}&Source=http%3A//it.jecsi.com/danny/default.aspx">{{task.Task}}</a></h4>
+                <h5>{{task.ID}}</h5>
+                </td>
+                <td>{{task.Status}}</td>
+                <td class="taskHours">
+                  <a  tooltip="Time remaining ( {{task.HoursBilled}} / {{task.Hours}} )" class="tooltip">{{task.Hours - task.HoursBilled | number:2}}</a>
+                  <a ng-href="http://it.jecsi.com/Lists/AdditionalTimeRequest/NewForm.aspx?TID={{task.ID}}"> +</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
   <div class="column full">
     <div class="block-container">
       <div class="block-header">
-        <h3>Tasks</h3>
+        <h3 class="boxHeading">Tickets</h3> 
+        <input class="taskSearch" type="search" ng-model="ticketSearch" placeholder="Search" />
+        <input class="taskFilter" type="checkbox" ng-model="ticketFilter" />
+        <label class="filterLabel">All:</label><!-- -->
       </div>
       <div class="block-content">
-        <div class="task-row">
-          <div class="priority high">
-            <a tooltip="Task priority" class="tooltip">High</a>
-          </div>
-          <div class="task-title">
-            <h4>Title</h4>
-            <h5>Description</h5>
-          </div>
-          <div class="task-progress">
-            <div class="progress-bar">
-              <div class="progress-track">
-                <div class="progress-fill">
-                  <span>100%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="task-time"><a  tooltip="Time remaining" class="tooltip">0.25 <small>( 4.5 / 4.75 )</small></a></div>
-        </div>
-        <div class="task-row">
-          <div class="priority normal">
-            <a tooltip="Task priority" class="tooltip">Normal</a>
-          </div>
-          <div class="task-title">
-            <h4>Title</h4>
-            <h5>Description</h5>
-          </div>
-          <div class="task-progress">
-            <div class="progress-bar">
-              <div class="progress-track">
-                <div class="progress-fill">
-                  <span>75%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="task-time"><a  tooltip="Time remaining" class="tooltip">0.25 <small>( 4.5 / 4.75 )</small></a></div>
-        </div>
-        <div class="task-row">
-          <div class="priority low">
-            <a tooltip="Task priority" class="tooltip">Low</a>
-          </div>
-          <div class="task-title">
-            <h4>Title</h4>
-            <h5>Description</h5>
-          </div>
-          <div class="task-progress">
-            <div class="progress-bar">
-              <div class="progress-track">
-                <div class="progress-fill">
-                  <span>40%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="task-time"><a  tooltip="Time remaining" class="tooltip">0.25 <small>( 4.5 / 4.75 )</small></a></div>
+        <div class="table-responsive">
+          <table cellpadding="0" cellspacing="0" class="table table-hover"><!-- table-striped  -->
+            <thead>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ticket in ticketData.tickets | openTickets:ticketFilter | filter:ticketSearch | orderBy:'Priority'">
+                <td class="taskPriority {{ticket.Priority | decode:'priority' | lowercase}}"><span>{{ticket.Priority | decode:'priority'}}</span></td>
+                <td class="taskName">
+                  <h4><a  tooltip="{{ticket.Issue | decode}}" class="tooltip" ng-href="{{getTicketURL(ticket.ID)}}&Source=http%3A//it.jecsi.com/danny/default.aspx%23/tasks">{{ticket.Title | decode}}</a></h4>
+                  <h5>{{ticket.ID | decode}}</h5>
+                </td>
+                <!-- <td>{{ticket.Created | decode}}</td>
+                <td>{{ticket.Reported | decode}}</td> -->
+                <td>{{ticket.Status | decode}}</td>
+                <td>{{ticket.Due | decode}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

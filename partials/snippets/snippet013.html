@@ -1,10 +1,41 @@
-<pre class="sg-html-code sg-preformatted">
-<code>function makePercent(cell){
-    var num = cell.innerText;
-    var arrnum = num.split(".");
-    var num = arrnum[0];
-    if( arrnum[1] !== undefined && arrnum[1].length > 0 && arrnum[1][0] >= 5 ){ num++;}
-    num = num + "%";
-    cell.innerText = num;
+﻿<pre class="language-javascript">
+<code>function compareDates( date1, comparisonType, date2 ) {
+    var result = false;
+    
+    // all three parameters requierd
+    if( !date1 || !date2 || !comparisonType ) {
+        return false;
+    }
+
+    // convert dates to date objects, then strip the time from the dates for precise comparison
+    date1 = new Date(date1).setHours(0,0,0,0);
+    date2 = new Date(date2).setHours(0,0,0,0);
+
+    // make sure dates were passed
+    if( isNaN(date1) || isNaN(date2) ){
+        return false;
+    }
+
+    switch (comparisonType){
+        case "&gt;=" :
+            result = date1 &gt;= date2;
+        break;
+        case "&lt;=" :
+            result = date1 &lt;= date2;
+        break;
+        case "&gt;" :
+            result = date1 &gt; date2;
+        break;
+        case "&lt;" :
+            result = date1 &lt; date2;
+        break;
+        case "==" :
+            result = date1 == date2;
+        break;
+
+        default :
+            return false;
+    }
+    return result;
 }</code>
 </pre>

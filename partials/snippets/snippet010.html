@@ -1,4 +1,4 @@
-<pre class="sg-html-code sg-preformatted">
+﻿<pre class="language-javascript">
 <code>window.SaveQueue = (function(){
     var savedQueue = [];
     var queue = [];
@@ -27,5 +27,25 @@
         goNext:goNext,
         start:start
     };
-}());</code>
+}());
+
+$(document).ready(function(){
+	SaveQueue.add(popMaps);
+	SaveQueue.add(popReports);
+	
+	SaveQueue.start();
+});
+
+function popMaps () {
+	PopulateReports("MAP", "reportsBox1");
+}
+
+function popReports () {
+	PopulateReports("BatteryManagement", "reportsBox2");
+}
+
+function PopulateReports ( p1, p2 ) {
+    //...//
+    SaveQueue.goNext();
+}</code>
 </pre>

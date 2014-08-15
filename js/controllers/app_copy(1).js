@@ -1,26 +1,4 @@
-var myApp = angular.module('DRDapp', ['myFilters']);
-
-angular.module('myFilters', [])
-.filter('decode', function () {
-  return function (string, type) {
-    string = decodeURIComponent(string);
-    console.log('is this on? ' + type);
-    switch (type) {
-      case 'priority' :
-        string = string.split(') ')[1];
-        console.log('splitting: ' + type);
-      break;
-      default:
-      console.log('uh oh, it failed: ' + type);
-    }
-    return string;
-  };
-});
-
-myApp.controller('ctrlDRD', function ($scope, $filter, $http) {
-
-  $scope.activePage = null;
-  
+function AppCtrl ($scope) {
   $scope.setActive = function (type) {
     $scope.toolsActive = '';
     $scope.snippetsActive = '';
@@ -29,10 +7,48 @@ myApp.controller('ctrlDRD', function ($scope, $filter, $http) {
 
     $scope[type + 'Active'] = 'active';
     $scope.activePage = type;
+  },
+
+  $scope.activePage = null;
+
+  $scope.airports = {
+    "PDX": {
+      "code": "PDX",
+      "name": "Portland International Airport",
+      "city": "Portland",
+      "destinations": [
+        "LAX",
+        "SFO"
+      ]
+    },
+    "STL": {
+      "code": "STL",
+      "name": "Lambert-St. Louis International Airport",
+      "city": "St. Louis",
+      "destinations": [
+        "LAX",
+        "MKE"
+      ]
+    },
+    "MCI": {
+      "code": "MCI",
+      "name": "Kansas City International Airport",
+      "city": "Kansas City",
+      "destinations": [
+        "LAX",
+        "DFW"
+      ]
+    }
   };
+  $scope.sidebarURL = 'partials/airport.html';
+  $scope.currentAirport = null;
 
+  $scope.setAirport = function (code) {
+    $scope.currentAirport = $scope.airports[code];
+  };
+}
 
-//function SnippetCtrl ($scope) {
+function SnippetCtrl ($scope) {
   $scope.snippets = [
     {name:'IE friendly console.log', code:'partials/snippets/snippet001.html'},
     {name:'Deformat number', code:'partials/snippets/snippet002.html'},
@@ -67,20 +83,29 @@ myApp.controller('ctrlDRD', function ($scope, $filter, $http) {
     Prism.highlightAll();
   };
 
-//function TaskCtrl ($scope, $http, $filter) {
 
-  $scope.taskData = null;
+}
+
+function TaskCtrl ($scope, $http, $filter) {
+
+  $scope.data = null;
 
   $http.get('web/TasksJSON.aspx?Status=IP').success(function(data){
-    $scope.taskData = data;
+    $scope.data = data;
   });
 
-//function TicketCtrl ($scope, $http, $filter) {
 
-  $scope.ticketData = null;
+}
+
+
+function TicketCtrl ($scope, $http, $filter) {
+
+  $scope.data = null;
 
   $http.get('web/TicketsJSON.aspx?Status=IP').success(function(data){
-    $scope.ticketData = data;
+    $scope.data = data;
   });
 
-});
+
+}
+

@@ -1,0 +1,22 @@
+﻿<pre class="language-javascript">
+<code>function SelectSingleNode(xmlDoc, elementPath) {
+    if (xmlDoc.evaluate) {
+        var nodes = xmlDoc.evaluate(elementPath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+        var results = nodes.iterateNext();
+        return results;
+    } else {
+        return xmlDoc.selectSingleNode(elementPath);
+	}
+}</code>
+</pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>// replace this
+var selectedNode = xmlDoc.selectSingleNode(elementPath);
+
+// with this
+var selectedNode = SelectSingleNode(xmlDoc, elementPath);
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">This was recently used to update DbNetGrid to work with the latest Google Chrome patch on 04/09/2014 which removed the depreciated document.selectSingleNode() method.</p>

@@ -1,0 +1,13 @@
+﻿<pre class="language-javascript">
+<code>function shortDate(){
+    var x = arguments[0] || new Date();
+    x = (typeof x == "string") ? new Date(x) : x;
+    if( isNaN( x.getMonth() ) ){ 
+        // couldn't convert it to a valid date
+        return false;
+    }
+    return x.getMonth()+1 + 
+    "/" +  x.getDate() +
+    "/" +  x.getFullYear();
+}</code>
+</pre>

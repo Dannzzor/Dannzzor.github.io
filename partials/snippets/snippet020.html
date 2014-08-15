@@ -1,0 +1,78 @@
+<h4 class="snippetSectionHeading">Useage:</h4>
+<p class="snippetComments">To use these, simply create a shortcut on your bookmarks bar in your browser, then right click it and click "edit". Next copy the code from the textarea that you wish to use, and paste it into the "URL" box of the shortcut, then save it. Done!</p>
+
+<h4 class="snippetSectionHeading">updating page:</h4>
+<p class="snippetComments">This shortcut will navigate to the updating version of the current page, if one exists.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:str=window.location.toString();window.location=(str.substring(0,str.lastIndexOf(".")) + "_updating.aspx" + ( ~str.indexOf("?") ? str.substring(str.lastIndexOf("?"), str.length) : "" ));
+</textarea>
+
+<h4 class="snippetSectionHeading">! updating page:</h4>
+<p class="snippetComments">This shortcut will navigate from the updating page to the non-updating page.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:str=window.location.toString();window.location=(str.replace(/_updating/,""));
+</textarea>
+
+<h4 class="snippetSectionHeading">view list:</h4>
+<p class="snippetComments">This shortcut will navigate to the list structure behind the current page.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:str=window.location.toString();(str.search("_layouts")&lt;0)?window.location=(str.substring(0,str.lastIndexOf("/"))+"/_layouts/1033/viewlsts.aspx"):window.location=(str.substring(0,str.lastIndexOf("/"))+"/viewlsts.aspx")
+</textarea>
+
+<h4 class="snippetSectionHeading">Remove params:</h4>
+<p class="snippetComments">This shortcut will reload the page without url parameters.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:str=window.location.href;window.location.href= str.substring(0,str.lastIndexOf("?"));
+</textarea>
+
+<h4 class="snippetSectionHeading">Add test param:</h4>
+<p class="snippetComments">This shortcut will reload the page with a test parameter.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:str=window.location.href;window.location.href= str + '?Test=23';
+</textarea>
+
+<h4 class="snippetSectionHeading">Return link to grid:</h4>
+<p class="snippetComments">This shortcut will produce a popup with the UNC path to the grid on the current page.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:var url = window.location.href.toLowerCase();var end = url.split("publish")[1].replace(/\//g, '\\');var loc = !!~(url.indexOf('webapps.jecsi.com/dbnetgrid/')) ? '\\\\jeportal\\DbNetLink\\DbNetSuite 3.3\\DbNetGrid\\publish' : (!!~(url.indexOf('dbnetgrid.jecsi.com/dbnetgrid/')) ? '\\\\Jesharepoint\\DbNetLink\\DbNetGrid 3.3\\publish' : (!!~(url.indexOf('dbnetgrid.jecsi.com/dbnetgridapp/')) ? '\\\\Jesharepoint\\DbNetLink\\DbNetGrid 3.1\\publish' : 'Well, this is awkward. Guess this handy tool isn\'t quite THAT handy'));prompt('This is the UNC of your grid, sir:', loc + end);
+</textarea>
+
+<h4 class="snippetSectionHeading">Return link to grid (sans file name):</h4>
+<p class="snippetComments">This shortcut will produce a popup with the UNC path to the grid on the current page.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:var url = window.location.href.toLowerCase();var end = url.split("publish")[1].replace(/\//g, '\\');end = end.split('\\');end.pop();end = end.join('\\');var loc = !!~(url.indexOf('webapps.jecsi.com/dbnetgrid/')) ? '\\\\jeportal\\DbNetLink\\DbNetSuite 3.3\\DbNetGrid\\publish' : (!!~(url.indexOf('dbnetgrid.jecsi.com/dbnetgrid/')) ? '\\\\Jesharepoint\\DbNetLink\\DbNetGrid 3.3\\publish' : (!!~(url.indexOf('dbnetgrid.jecsi.com/dbnetgridapp/')) ? '\\\\Jesharepoint\\DbNetLink\\DbNetGrid 3.1\\publish' : 'Well, this is awkward. Guess this handy tool isn\'t quite THAT handy'));
+prompt('This is the UNC of your grid, sir:', loc + end);
+</textarea>
+
+<h4 class="snippetSectionHeading">Get the UNC path to the current page:</h4>
+<p class="snippetComments">This shortcut will try to produce a popup with the UNC path to the current page. This may not always work, it mostly just works for pages that are based on a sharepoint site.</p>
+<textarea rows="5" class="snippetCodeBox">
+javascript:var url = window.location.href.toLowerCase();url = url.split('\/');url.pop();url.shift();url = url.join('\\');prompt('This MAY be the UNC path you are looking for:', '\\' + url);
+</textarea>
+
+
+
+<!-- 
+<pre class="language-javascript">
+<code>function SelectSingleNode(xmlDoc, elementPath) {
+    if (xmlDoc.evaluate) {
+        var nodes = xmlDoc.evaluate(elementPath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+        var results = nodes.iterateNext();
+        return results;
+    } else {
+        return xmlDoc.selectSingleNode(elementPath);
+	}
+}</code>
+</pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>// replace this
+var selectedNode = xmlDoc.selectSingleNode(elementPath);
+
+// with this
+var selectedNode = SelectSingleNode(xmlDoc, elementPath);
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">This was recently used to update DbNetGrid to work with the latest Google Chrome patch on 04/09/2014 which removed the depreciated document.selectSingleNode() method.</p>
+ -->

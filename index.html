@@ -1,50 +1,69 @@
-<html ng-app="DRD-app">
+﻿<html ng-app="DRDapp">
 <head>
-	<title>Demo</title>
-	<script type="text/javascript" src="js/lib/angular.min.js"></script>
-	<script type="text/javascript" src="js/lib/jquery.js"></script>
-	<script type="text/javascript" src="js/controllers/app.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+<title>IT - DRD</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"> 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+	<link rel="stylesheet" type="text/css" href="css/prism.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<!-- <script type="text/javascript" src="js/controllers/app.js"></script> -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/lib/modernizr-2.6.2.min.js"></script>
+	<script>
+		if (!!navigator.userAgent.match(/MSIE/)) {
+			alert('This experimental development site is only compatible with Google Chrome. You will now be redirected to the fallback site.');
+			window.location = 'default_original.aspx';
+		}
+	</script>
 </head>
-<body>
+<body ng-controller="MainController">
 
-	<div class="page-container" ng-controller="AppCtrl">
+	<div class="page-container">
 		<div class="sidebar tcell">
 			<div class="logo">
 				<h1>DRD</h1>
 			</div>
 			<!--<div class="info"><h3>//info//</h3></div>-->
 			<ul class="navigation">
-				<li ng-class="toolsActive">
-					<a href="#">Handy Tools</a>
-				</li>
+				<li ng-class="tasksActive">
+					<a href="#">Tasks</a>
+				</li>      
 				<li ng-class="snippetsActive">
 					<a href="#/snippets">Code Snippets</a>
 				</li>
 				<li ng-class="projectsActive">
 					<a href="#/projects">Projects</a>
 				</li>
-				<li ng-class="tasksActive">
-					<a href="#/tasks">Tasks</a>
-				</li>      
+				<li ng-class="toolsActive">
+					<a href="#/tools">Handy Tools</a>
+				</li>
+				<li ng-class="linksActive">
+					<a href="#/links">Handy Links</a>
+				</li>
 			</ul>
 		</div>
 		<div class="content tcell">
 			<div class="header">
 				<h3>
-					<span><a href="#">HOME</a></span>
-					<small>></small>
+					<span><a href="http://it.jecsi.com/">IT</a></span>
+					<small>&gt;</small>
+					<span><a href="#">DRD</a></span>
+					<small>&gt;</small>
 					<span><small>{{activePage | uppercase }}</small></span>
+					<ul>
+						<li><a href="http://jesharepoint.jecsi.com/">JECS</a></li>
+						<li><a href="http://it.jecsi.com/itsps">IT SPS</a></li>
+					</ul>
 				</h3>
 			</div>
-			<div class="container" ng-view>
+			<div class="drd-container" ng-view>
 			</div>
 		</div>
 	</div>
 
-
+	<script type="text/javascript" src="js/lib/prism.js"></script>
 </body>
 </html>

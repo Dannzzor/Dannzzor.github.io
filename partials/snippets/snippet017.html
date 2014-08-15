@@ -1,0 +1,14 @@
+﻿<pre class="language-javascript">
+<code>function doubleSort (a, b) {
+    var aReg = a.region || '';
+    var bReg = b.region || '';
+    var aCnt = a.country || '';
+    var bCnt = b.country || '';
+
+    if(aReg.toLowerCase() == bReg.toLowerCase()) {
+        return (aCnt.toLowerCase() &lt; bCnt.toLowerCase()) ? -1 : (aCnt.toLowerCase() &gt; bCnt.toLowerCase()) ? 1 : 0;
+    } else {
+        return (aReg.toLowerCase() &lt; bReg.toLowerCase()) ? -1 : 1;
+    }
+}</code>
+</pre>
