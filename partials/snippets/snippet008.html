@@ -1,6 +1,18 @@
 <pre class="language-javascript">
-<code>if( source ) {
-    source = escape( source );
-    url = ~(url.indexOf("?")) ? url + "&Source=" + source : url + "?Source=" + source;
-}</code>
+<code>// accepts a url string, and an array of param objects
+var url = "http://mysite.html";
+arrParams = [{k: 'id', v: 15}, {k: 'user', v: 'bob'}];
+
+function addParam(url, arrParams) {
+    for( var i = 0; i < arrParams.length; i++ ){
+    	var param = arrParams[i];
+	    url += ~(url.indexOf("?")) ? "&" : "?";
+	    url += param.k + "=" + escape( param.v );
+    }
+    return url;
+}
+
+// addParam(url, arrParams);                  //  "http://mysite.html?id=15&user=bob"
+// url = addParam(url, [{k:'bla',v:'bla2'}])  //  "http://mysite.html?id=15&user=bob&bla=bla2"
+</code>
 </pre>
