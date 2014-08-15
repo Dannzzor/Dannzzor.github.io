@@ -1,10 +1,14 @@
 ﻿<pre class="language-javascript">
-<code>var seen = {};
-$("li").each(function() {
-    var txt = $(this).text();
-    if (seen[txt])
-        $(this).remove();
-    else
-        seen[txt] = true;
-});</code>
+<code>Array.prototype.getUnique = function() {
+    var u = {},
+        a = [];
+    for (var i = 0, l = this.length; i < l; ++i) {
+        if (u.hasOwnProperty(this[i])) {
+            continue;
+        }
+        a.push(this[i]);
+        u[this[i]] = 1;
+    }
+    return a;
+}</code>
 </pre>
