@@ -140,18 +140,18 @@ var myApp = angular.module('DRDapp', ['myFilters'])
 
    $scope.taskData = null;
 
-   $http.get('web/TasksJSON.aspx?Status=IP').success(function(data){
+   $http.get('partials/tickets.json').success(function(data){
      $scope.taskData = data;
    });
 
    $scope.ticketData = null;
 
-   $http.get('web/TicketsJSON.aspx?Status=IP').success(function(data){
+   $http.get('partials/tasks.json').success(function(data){
      $scope.ticketData = data;
    });
 
    $scope.getTicketURL = function(ticketID) {
-      return ( ~ticketID.toUpperCase().indexOf('B') ) ? "http://it.jecsi.com/Lists/Bugs/EditForm.aspx?ID=" + ticketID.slice(1) : "http://ondemand.jecsi.com/sites/ITTickets/Lists/InternalIssues/EditForm.aspx?ID=" + ticketID;
+      return ( ~ticketID.toUpperCase().indexOf('B') ) ? "/Bugs/EditForm.aspx?ID=" + ticketID.slice(1) : "/tickets/EditForm.aspx?ID=" + ticketID;
    };
 })
 

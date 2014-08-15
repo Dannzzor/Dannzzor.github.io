@@ -15,13 +15,13 @@
               <tr ng-repeat="task in taskData.tasks | filter:taskSearch | orderBy:'Priority'">
                 <td class="taskPriority {{task.Priority | decode:'priority' | lowercase}}"><span>{{task.Priority | decode:'priority'}}</span></td>
                 <td class="taskName">
-                  <h4><a ng-href="http://it.jecsi.com/Lists/ProjectTasks/DispComments.aspx?ID={{task.ID}}&Source=http%3A//it.jecsi.com/danny/default.aspx">{{task.Task}}</a></h4>
+                  <h4><a ng-href="#/tasks/{{task.ID}}">{{task.Task}}</a></h4>
                 <h5>{{task.ID}}</h5>
                 </td>
                 <td>{{task.Status}}</td>
                 <td class="taskHours">
                   <a  tooltip="Time remaining ( {{task.HoursBilled}} / {{task.Hours}} )" class="tooltip">{{task.Hours - task.HoursBilled | number:2}}</a>
-                  <a ng-href="http://it.jecsi.com/Lists/AdditionalTimeRequest/NewForm.aspx?TID={{task.ID}}"> +</a>
+                  <a ng-href="#/task/requesttime/{{task.ID}}"> +</a>
                 </td>
               </tr>
             </tbody>
@@ -51,7 +51,7 @@
               <tr ng-repeat="ticket in ticketData.tickets | openTickets:ticketFilter | filter:ticketSearch | orderBy:'Priority'">
                 <td class="taskPriority {{ticket.Priority | decode:'priority' | lowercase}}"><span>{{ticket.Priority | decode:'priority'}}</span></td>
                 <td class="taskName">
-                  <h4><a  tooltip="{{ticket.Issue | decode}}" class="tooltip" ng-href="{{getTicketURL(ticket.ID)}}&Source=http%3A//it.jecsi.com/danny/default.aspx%23/tasks">{{ticket.Title | decode}}</a></h4>
+                  <h4><a  tooltip="{{ticket.Issue | decode}}" class="tooltip" ng-href="{{getTicketURL(ticket.ID)}}">{{ticket.Title | decode}}</a></h4>
                   <h5>{{ticket.ID | decode}}</h5>
                 </td>
                 <!-- <td>{{ticket.Created | decode}}</td>
