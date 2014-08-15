@@ -12,12 +12,6 @@
 	<!-- <script type="text/javascript" src="js/controllers/app.js"></script> -->
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/lib/modernizr-2.6.2.min.js"></script>
-	<script>
-		if (!!navigator.userAgent.match(/MSIE/)) {
-			alert('This experimental development site is only compatible with Google Chrome. You will now be redirected to the fallback site.');
-			window.location = 'default_original.aspx';
-		}
-	</script>
 </head>
 <body ng-controller="MainController">
 
@@ -52,10 +46,10 @@
 					<small>&gt;</small>
 					<span><a href="#">DRD</a></span>
 					<small>&gt;</small>
-					<span><small>{{activePage | uppercase }}</small></span>
+					<span><small>{{ activePage | uppercase }}</small></span>
 					<ul>
-						<li><a href="http://jesharepoint.jecsi.com/">JECS</a></li>
-						<li><a href="http://it.jecsi.com/itsps">IT SPS</a></li>
+						<li><a href="#">site1</a></li>
+						<li><a href="#">site2</a></li>
 					</ul>
 				</h3>
 			</div>
