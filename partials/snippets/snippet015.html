@@ -1,19 +1,5 @@
 ﻿<pre class="language-javascript">
-<code>function retainFilters( grid ) {
-    var filterColumn = ""; 
-    var elementName = "";
-    for( var i = 0; i &lt; grid.filterColumns.length; i++ ){        
-        filterColumn = grid.filterColumns[i];
-        elementName = filterColumn.toLowerCase();
-    }
-    var dd = document.getElementsByName(elementName);
-    for (var i = 0; i &lt; dd.length; i++) {
-        if (!IsNullOrEmpty(dd[i].options[dd[i].selectedIndex].value)) {
-            if (!IsNullOrEmpty(grid.filterPart)) {
-                grid.filterPart += " AND ";
-            }
-            grid.filterPart += filterColumn + " = '" + dd[i].options[dd[i].selectedIndex].value + "'";
-        }
-    }
-}</code>
+<code>
+// removed
+</code>
 </pre>

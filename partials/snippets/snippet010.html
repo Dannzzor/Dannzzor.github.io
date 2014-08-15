@@ -1,51 +1,79 @@
 ﻿<pre class="language-javascript">
-<code>window.SaveQueue = (function(){
-    var savedQueue = [];
-    var queue = [];
-    var start = function(){
-        queue = savedQueue.slice(0);
-        SaveQueue.goNext();
-    };
-    var add = function(fnc){
-        queue.push(fnc);
-        savedQueue.push(fnc);
-    };
-    var goNext = function(){
-        if( queue.length >= 1 ){
-            var fnc = queue.shift();
-            if( typeof fnc == "function" ){
-                fnc();
+<code>function FunctionQueue () {
+    var fq = this;
+
+    // The functions are stored as objects in this array
+    fq.queue = [];
+    
+    // Backup of `queue` in case we want to run again, or start over
+    fq.savedQueue = [];
+
+    // Add functions to the queue
+    fq.add = add;
+
+    // Go to the next item in queue. Place this function at the end of the function being queued.
+    fq.goNext = goNext;
+
+    // Start the queue
+    fq.start = start;
+
+    // Clear the current queue
+    fq.flush = flush;
+
+    // Clear the queue and the saved queue
+    fq.flushAll = flushAll;
+
+    // Load a queue
+    fq.restore = restore;
+
+    // Returns an object with the saved queue and the current remaining queue
+    fq.backup = backup;
+
+
+    ///////////////  Helper functions
+    
+    function start (){
+        fq.queue = fq.savedQueue.slice(0);
+        fq.goNext();
+    }
+    function add (fnc, params){
+        fq.queue.push({fn: fnc, fp: params});
+        fq.savedQueue.push({fn: fnc, fp: params});
+    }
+    function goNext (){
+        if( fq.queue.length >= 1 ){
+            var fncObj = fq.queue.shift();
+            var fnc = fncObj.fn;
+            var params = fncObj.fp;
+            if( typeof fnc === "function" ){
+                if( params && Object.prototype.toString.call( params ) === '[object Array]' ) {
+                    fnc.apply(this, params);
+                } else if( params ) {
+                    fnc.call(this, params);
+                } else {
+                    console.log(fnc);
+                    console.log(params);
+
+                    fnc();
+               }
             }
         } else {
-            JE.Log("Save queue complete");
-            // add a redirect here
-            //fetchElementData();
+            console.log("Save fq.queue complete");
         }
-    };
-    return {
-        add:add,
-        goNext:goNext,
-        start:start
-    };
-}());
-
-$(document).ready(function(){
-	SaveQueue.add(popMaps);
-	SaveQueue.add(popReports);
-	
-	SaveQueue.start();
-});
-
-function popMaps () {
-	PopulateReports("MAP", "reportsBox1");
-}
-
-function popReports () {
-	PopulateReports("BatteryManagement", "reportsBox2");
-}
-
-function PopulateReports ( p1, p2 ) {
-    //...//
-    SaveQueue.goNext();
+    }
+    function flush(){
+        fq.queue = [];
+    }
+    function flushAll(){
+        fq.queue = [];
+        fq.savedQueue = [];
+    }
+    function restore(backupQueue){
+        fq.queue = backupQueue ? backupQueue : fq.savedQueue;
+        fq.savedQueue = fq.queue;
+    }
+    function backup(){
+        return { 'savedQueue': fq.savedQueue, 'queue': fq.queue};
+    }
 }</code>
 </pre>

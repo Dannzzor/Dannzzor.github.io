@@ -1,6 +1,6 @@
 ﻿<pre class="language-javascript">
 <code>var seen = {};
-$(".searchRow td.country").each(function() {
+$("li").each(function() {
     var txt = $(this).text();
     if (seen[txt])
         $(this).remove();
