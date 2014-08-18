@@ -45,10 +45,10 @@
             details: 'JS',
             unc: ''
         }, {
-            url: '',
-            type: '',
-            name: '',
-            details: '',
+            url: 'https://github.com/johnpapa/angularjs-styleguide/blob/master/README.md',
+            type: 'Reference',
+            name: 'AngularJS style guide',
+            details: 'JS',
             unc: ''
         }, {
             url: '',
