@@ -39,3 +39,17 @@
     return result;
 }</code>
 </pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>compareDates('4/05/2010', '>', '5/05/2010');            // false
+compareDates('4/05/2010', '<', '5/05/2010');            // true
+compareDates('4/05/2010', '==', '5/05/2010');           // false
+compareDates('4/05/2010', '<=', '5/05/2010');           // true
+
+var today = new Date();
+
+compareDates( today , '>=', '5/05/2010');               // true
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">Used to quickly compare two dates.</p>

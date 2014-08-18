@@ -5,3 +5,12 @@
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }</code>
 </pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>pad(36, 6);			// "000036"
+pad(136, 6);		// "000136"
+pad(234, 6, x);		// "xxx234"
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">Used to add filler characters to the start of a string to maintain a specific string length.</p>

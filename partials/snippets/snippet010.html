@@ -30,7 +30,7 @@
     fq.backup = backup;
 
 
-    ///////////////  Helper functions
+    ///////////////
     
     function start (){
         fq.queue = fq.savedQueue.slice(0);
@@ -77,3 +77,30 @@
     }
 }</code>
 </pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>function testOne() { console.log("test one!"); }
+function testTwo() { console.log("test two!"); }
+
+var saveQueue = new FunctionQueue();
+
+saveQueue.add(testOne);
+saveQueue.add(testTwo);
+
+saveQueue.start();                                  // "test one!"
+saveQueue.goNext();                                 // "test two!"
+saveQueue.goNext();                                 // "Save queue complete"
+
+saveQueue.add(function(){
+    console.log("test three!");
+    saveQueue.goNext();
+});
+
+saveQueue.start();                                  // "test one!"
+saveQueue.goNext();                                 // "test two!"
+saveQueue.goNext();                                 // "test three!"
+                                                    // "Save queue complete"
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">Used to queue up functions that need to be called in a specific order, specifically used to save form sections in sequence on the formbuilder app.</p>

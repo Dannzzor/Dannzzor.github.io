@@ -11,3 +11,17 @@
     }, 100);
 }</code>
 </pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>var myArr = [1,2,3,4,5,6, ... 2342509234]   // imagine a very large array;
+
+function doSomething( item ) {
+	... 									// imagine a heavy calculation
+	return item;
+}
+
+chunk( myArr, doSomething );				// processes the large array thru the heavy function in chunks, which doesnt lock up the browser!
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">This is used in place of a `for` loop, where a large dataset must be run thru a heavy function that would otherwise lock up the browser. This lets us process the data async in chunks and lets the browser load in pieces.</p>

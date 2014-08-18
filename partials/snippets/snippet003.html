@@ -8,3 +8,14 @@
     return map;
 }</code>
 </pre>
+<h4 class="snippetSectionHeading">Usage:</h4>
+<pre class="language-javascript">
+<code>var url = "http://www.whatever.com?something=23&somethingelse=bla";
+var x = getParams();
+x.something;			// 23
+x.somethingelse;		// "bla"
+x.doesntexist;			// undefined
+</code>
+</pre>
+<h4 class="snippetSectionHeading">Comments:</h4>
+<p class="snippetComments">Used to grab all of the params from a URL, then return them as a key value map.</p>
