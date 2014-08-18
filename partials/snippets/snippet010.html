@@ -58,7 +58,7 @@
                }
             }
         } else {
-            console.log("Save queue complete");
+            try { console.log("Function queue complete"); } catch(e) {}
         }
     }
     function flush(){
@@ -89,7 +89,7 @@ saveQueue.add(testTwo);
 
 saveQueue.start();                                  // "test one!"
 saveQueue.goNext();                                 // "test two!"
-saveQueue.goNext();                                 // "Save queue complete"
+saveQueue.goNext();                                 // "Function queue complete"
 
 saveQueue.add(function(){
     console.log("test three!");
@@ -99,7 +99,7 @@ saveQueue.add(function(){
 saveQueue.start();                                  // "test one!"
 saveQueue.goNext();                                 // "test two!"
 saveQueue.goNext();                                 // "test three!"
-                                                    // "Save queue complete"
+                                                    // "Function queue complete"
 </code>
 </pre>
 <h4 class="snippetSectionHeading">Comments:</h4>

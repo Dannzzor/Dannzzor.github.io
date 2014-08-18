@@ -49,7 +49,7 @@ a {
 
 .page-container {
   height: 1200px; /*remove*/
-  width:100%;
+  width: 100%;
   display: table;
   position: relative;
 }
@@ -70,7 +70,7 @@ th {
 .sidebar {
   height: 100%;
   width: 200px;
-  background: #333;
+  background: #222;
 }
 
 .content {
@@ -99,7 +99,7 @@ th {
 
 .header span, 
 .header a {
-  color: #333;
+  color: #222;
 }
 
 .header ul {
@@ -133,7 +133,7 @@ th {
 .logo h1{
   line-height: 75px;
   text-align: center;
-  color: #333;
+  color: #222;
 }
 
 .info {
@@ -162,14 +162,14 @@ th {
   border-top: 1px solid transparent;
   padding-left: 30px;
   position: relative;
-  background: #333;
+  background: #222;
   font-weight: 800;
   transition: 0.3s all;
 }
 
 .navigation .active a {
   color: #5ef;
-  background: #3c3c3c;
+  background: #333;
 }
 
 .navigation li.active {
@@ -442,7 +442,7 @@ th {
 }
 
 .tooltip:hover:after{
-  background: #333;
+  background: #222;
   background: rgba(0,0,0,.8);
   border-radius: 5px;
   bottom: 26px;
@@ -457,7 +457,7 @@ th {
 
 .tooltip:hover:before{
   border: solid;
-  border-color: #333 transparent;
+  border-color: #222 transparent;
   border-width: 6px 6px 0 6px;
   bottom: 20px;
   content: "";
@@ -489,7 +489,7 @@ th {
 }
 
 .snippetList li:hover {
-  background: #333;
+  background: #222;
   color: #fff;
 }
 
